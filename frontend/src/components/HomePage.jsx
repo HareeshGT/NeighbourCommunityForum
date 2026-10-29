@@ -57,7 +57,7 @@ export default function HomePage({userData}) {
       };
 
       try {
-        await axios.post('http://localhost:3000/sendpost', message);
+        await axios.post('/sendpost', message);
         setMessages([...messages, message]);
         setNewMessage('');
         setPostTitle('');
