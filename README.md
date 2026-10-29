@@ -18,9 +18,31 @@ docker run --rm --name neighbourhood-community-forum -p 3000:3000 neighbourhood-
 
 Open [http://localhost:3000/login](http://localhost:3000/login).
 
-The container serves the built React frontend and the Express API on port `3000`. The application uses Firebase Authentication and Cloud Firestore, so make sure the Firebase project configuration and security rules are set up for your deployment.
+The container serves the built React frontend and the Express API on port `3000`. Firebase configuration is read from environment variables at runtime.
 
-## Run locally
+### Configure Firebase on Render
+
+In your Render service, open **Environment** and add these variables using the values from your Firebase project settings:
+
+- `FIREBASE_API_KEY`
+- `FIREBASE_AUTH_DOMAIN`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_STORAGE_BUCKET`
+- `FIREBASE_MESSAGING_SENDER_ID`
+- `FIREBASE_APP_ID`
+- `FIREBASE_MEASUREMENT_ID` (optional)
+
+Save the variables and redeploy. Do not commit actual values to Git.
+
+### Run locally
+
+Create a local environment file from the template:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+Fill in the Firebase values in `backend/.env`. The root `.gitignore` excludes local environment files from Git.
 
 In one terminal, start the backend:
 
