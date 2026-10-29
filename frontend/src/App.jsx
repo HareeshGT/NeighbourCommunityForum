@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import AuthForm from './components/AuthForm'
-import {BrowserRouter,Router,Route, Routes,} from "react-router-dom"
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import HomePage from './components/HomePage'
 import CommunityChat from './components/CommunityChat'
 
@@ -16,6 +16,7 @@ function App() {
   return(
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path='/login' element={
           <AuthForm onLoginIn={onLoginIn}/>
         }>
@@ -26,10 +27,8 @@ function App() {
         }>
 
         </Route>
-        <Route path='/chat' element={
-          <CommunityChat userData={userData}/>
-        }>
-        </Route>
+        <Route path="/chat" element={<CommunityChat userData={userData} />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
       
     </BrowserRouter>
