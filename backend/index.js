@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
 const cors = require("cors");
@@ -190,7 +191,14 @@ app.post('/sendpost', async (req, res) => {
     }
   });
 
-const PORT = 3000;
+// Serve the production Vite build from the same origin as the API.
+const frontendDist = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendDist));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendDist, "index.html"));
+});
+
+const PORT = Number(process.env.PORT) || 3000;
 app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
 })
