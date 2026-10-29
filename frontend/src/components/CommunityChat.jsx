@@ -73,7 +73,7 @@ export default function CommunityChat({userData}) {
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       try{
-        axios.post("http://localhost:3000/sendmessage",message)
+        axios.post("/sendmessage",message)
         setMessages([...messages, message]);
         setNewMessage('');
       }
@@ -88,7 +88,7 @@ export default function CommunityChat({userData}) {
     ()=>{
       async function getMessage(){
         try{
-         let message =  await axios.post("http://localhost:3000/getmessage",{location:userData.location})
+         let message =  await axios.post("/getmessage",{location:userData.location})
          setMessages(message.data);
         }
         catch(error){
