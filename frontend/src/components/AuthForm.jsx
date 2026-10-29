@@ -30,13 +30,13 @@ export default function AuthForm({onLoginIn}) {
   const onSignup = async(e)=>{
     e.preventDefault();
     console.log(signupData);
-    const data = await axios.post("http://localhost:3000/signup",signupData);     
+    const data = await axios.post("/signup",signupData);     
     
   }
   
   const onLogin = async(e)=>{
     e.preventDefault();
-    const data = await axios.post("http://localhost:3000/login",loginData);     
+    const data = await axios.post("/login",loginData);     
     // if(data.data.userId)
     console.log(data);
     if(data.data.type=="user")
